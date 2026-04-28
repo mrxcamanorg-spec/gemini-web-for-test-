@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HDX_SHOP | Premium Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-2: #111831;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-2: rgba(255, 255, 255, 0.12);
+      --text: #f5f7ff;
+      --muted: rgba(245, 247, 255, 0.72);
+      --accent: #7c5cff;
+      --accent-2: #20d3ff;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124, 92, 255, 0.28), transparent 28%),
+        radial-gradient(circle at top right, rgba(32, 211, 255, 0.18), transparent 24%),
+        linear-gradient(180deg, var(--bg), var(--bg-2));
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(11, 16, 32, 0.6);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .logo-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 10px 25px rgba(124, 92, 255, 0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 700;
+      font-family: inherit;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      box-shadow: 0 14px 35px rgba(124, 92, 255, 0.28);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 18px 45px rgba(124, 92, 255, 0.36);
+    }
+
+    .hero {
+      padding: 68px 0 30px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 6vw, 5.4rem);
+      line-height: 0.98;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 620px;
+      margin-bottom: 26px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-3px);
+    }
+
+    .email-box {
+      display: flex;
+      gap: 10px;
+      max-width: 560px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .email-box input {
+      flex: 1;
+      min-width: 240px;
+      padding: 16px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      outline: none;
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--text);
+      font-family: inherit;
+    }
+
+    .email-box input::placeholder {
+      color: rgba(245, 247, 255, 0.45);
+    }
+
+    .trust {
+      color: rgba(245, 247, 255, 0.55);
+      font-size: 0.9rem;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 540px;
+      display: grid;
+      place-items: center;
+    }
+
+    .glass-panel {
+      position: absolute;
+      inset: 30px 20px;
+      border-radius: 32px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .floating-badge {
+      position: absolute;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .floating-badge.one { top: 34px; left: 30px; }
+    .floating-badge.two { top: 110px; right: 34px; animation-delay: 0.8s; }
+    .floating-badge.three { bottom: 52px; left: 44px; animation-delay: 1.5s; }
+
+    .product-card {
+      position: relative;
+      width: min(360px, 82vw);
+      background: rgba(10, 15, 30, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 30px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      transition: 0.35s ease;
+      z-index: 2;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px) rotate(-1deg);
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.08);
+    }
+
+    .product-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .price {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #7fffd4;
+    }
+
+    .swatches {
+      display: flex;
+      gap: 10px;
+      margin: 14px 0 8px;
+    }
+
+    .swatches span {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: inline-block;
+      border: 2px solid rgba(255, 255, 255, 0.55);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .swatches span:hover {
+      transform: scale(1.2);
+    }
+
+    .section {
+      padding: 40px 0 24px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 24px;
+      max-width: 720px;
+      line-height: 1.8;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card, .info-card, .faq-item {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: 0.3s ease;
+    }
+
+    .feature-card:hover, .info-card:hover, .faq-item:hover {
+      transform: translateY(-6px);
+      background: var(--card-2);
+    }
+
+    .feature-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(124, 92, 255, 0.95), rgba(32, 211, 255, 0.9));
+      margin-bottom: 16px;
+      font-size: 1.4rem;
+    }
+
+    .feature-card h3, .info-card h3, .faq-item h3 {
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+    }
+
+    .feature-card p, .info-card p, .faq-item p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .stats strong {
+      display: block;
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      border-radius: 22px;
+      transition: transform 0.35s ease, filter 0.35s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05) rotate(1deg);
+      filter: brightness(1.08);
+    }
+
+    .faq {
+      display: grid;
+      gap: 16px;
+    }
+
+    footer {
+      margin-top: 38px;
+      padding: 28px 0 36px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(245, 247, 255, 0.62);
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .features,
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-visual {
+        min-height: 500px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-grid,
+      .features,
+      .gallery,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 42px;
+      }
+
+      .hero-visual {
+        min-height: 440px;
+      }
+
+      .floating-badge.two {
+        right: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <div class="logo-badge">HDX</div>
+        <span>HDX_SHOP</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#features">Features</a>
+        <a href="#faq">FAQ</a>
+        <button class="btn btn-primary">Shop Now</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="hero">
+    <div class="container hero-grid">
+      <section>
+        <p style="color: #8fd3ff; font-weight: 700; margin-bottom: 12px;">Premium shopping experience</p>
+        <h1>Style for your daily life</h1>
+        <p>
+          Welcome to HDX_SHOP — a modern online store built for fast browsing, clean design, and smooth shopping.
+          Discover the latest essentials with a premium UI and elegant hover animations.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary">Start Shopping</button>
+          <button class="btn btn-secondary">View Collection</button>
+        </div>
+
+        <div class="email-box">
+          <input type="email" placeholder="Enter your email address" />
+          <button class="btn btn-primary">Join Now</button>
+        </div>
+        <p class="trust">Get offers, new arrivals, and special deals in your inbox.</p>
+      </section>
+
+      <section class="hero-visual">
+        <div class="glass-panel"></div>
+        <div class="floating-badge one">Free Shipping</div>
+        <div class="floating-badge two">Best Seller</div>
+        <div class="floating-badge three">New Drop</div>
+
+        <article class="product-card">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80" alt="HDX_SHOP featured product" />
+          </div>
+          <div class="product-title">HDX Signature Pack</div>
+          <p style="color: var(--muted); line-height: 1.7;">A stylish featured product section with a smooth hover effect and a premium look.</p>
+          <div class="swatches" aria-label="Color options">
+            <span style="background:#ff6b6b"></span>
+            <span style="background:#ffd93d"></span>
+            <span style="background:#6bff95"></span>
+            <span style="background:#6bc7ff"></span>
+          </div>
+          <div class="price-row">
+            <div>
+              <div style="color: var(--muted); font-size: 0.92rem;">Limited offer</div>
+              <div class="price">₹499</div>
+            </div>
+            <button class="btn btn-primary">Add to Cart</button>
+          </div>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <section id="products" class="section">
+    <div class="container">
+      <h2 class="section-title">Featured collection</h2>
+      <p class="section-subtitle">A clean product showcase layout with cards that lift on hover and images that zoom slightly for a modern shopping feel.</p>
+
+      <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80" alt="Product 1" />
+        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80" alt="Product 2" />
+        <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=900&q=80" alt="Product 3" />
+        <img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=900&q=80" alt="Product 4" />
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="container">
+      <h2 class="section-title">Why choose HDX_SHOP</h2>
+      <p class="section-subtitle">Built to feel premium, fast, and easy to use on desktop and mobile.</p>
+
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Fast browsing</h3>
+          <p>Simple layout, sharp typography, and smooth hover effects help your store look professional.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Modern design</h3>
+          <p>Glass cards, gradients, and a luxury dark theme give the website a stylish shopping vibe.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Mobile friendly</h3>
+          <p>The page adjusts neatly for phones and tablets so customers can shop anywhere.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container stats">
+      <div class="info-card">
+        <strong>24/7</strong>
+        <h3>Support available</h3>
+        <p>Answer customer questions anytime with a store design that feels trustworthy.</p>
+      </div>
+      <div class="info-card">
+        <strong>99.9%</strong>
+        <h3>Store uptime</h3>
+        <p>Your store stays polished and ready for customers with a strong, reliable layout.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <div class="container">
+      <h2 class="section-title">Frequently asked questions</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <h3>How can I start my own online store?</h3>
+          <p>Choose products, set your prices, add product images, and launch your website with a simple homepage like this one.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I edit this design?</h3>
+          <p>Yes. You can change the colors, text, images, and sections to match your brand perfectly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <p>HDX_SHOP — India | English</p>
+      <p>Terms of Service • Privacy Policy • Sitemap</p>
+    </div>
+  </footer>
+</body>
+</html>
